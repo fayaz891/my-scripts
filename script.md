@@ -370,3 +370,226 @@ sudo yum remove httpd wget unzip -y
 ---
 
 This provides a structured and formatted version of your scripts. Let me know if you need further improvements! 🚀
+
+
+Here are some examples of different types of loops in shell scripting:
+
+---
+
+### 1. **For Loop (Iterating Over a List)**
+```bash
+#!/bin/bash
+
+for item in Apple Banana Cherry Mango
+do
+    echo "Fruit: $item"
+    sleep 1
+done
+```
+**Output:**
+```
+Fruit: Apple
+Fruit: Banana
+Fruit: Cherry
+Fruit: Mango
+```
+
+---
+
+### 2. **For Loop (Iterating Over a Range of Numbers)**
+```bash
+#!/bin/bash
+
+for num in {1..5}
+do
+    echo "Number: $num"
+done
+```
+**Output:**
+```
+Number: 1
+Number: 2
+Number: 3
+Number: 4
+Number: 5
+```
+
+---
+
+### 3. **For Loop (Using C-Style Syntax)**
+```bash
+#!/bin/bash
+
+for ((i=1; i<=5; i++))
+do
+    echo "Iteration $i"
+done
+```
+**Output:**
+```
+Iteration 1
+Iteration 2
+Iteration 3
+Iteration 4
+Iteration 5
+```
+
+---
+
+### 4. **While Loop (Basic Example)**
+```bash
+#!/bin/bash
+
+counter=1
+
+while [ $counter -le 5 ]
+do
+    echo "Counter: $counter"
+    ((counter++))
+    sleep 1
+done
+
+echo "Loop completed."
+```
+**Output:**
+```
+Counter: 1
+Counter: 2
+Counter: 3
+Counter: 4
+Counter: 5
+Loop completed.
+```
+
+---
+
+### 5. **Infinite While Loop**
+```bash
+#!/bin/bash
+
+while true
+do
+    echo "Press Ctrl+C to stop the loop."
+    sleep 2
+done
+```
+> This loop will run forever until manually stopped using **Ctrl+C**.
+
+---
+
+### 6. **Until Loop**
+```bash
+#!/bin/bash
+
+count=1
+
+until [ $count -gt 5 ]
+do
+    echo "Count: $count"
+    ((count++))
+    sleep 1
+done
+```
+**Output:**
+```
+Count: 1
+Count: 2
+Count: 3
+Count: 4
+Count: 5
+```
+> The `until` loop runs until the condition becomes **true**.
+
+---
+
+### 7. **Break Statement in a Loop**
+```bash
+#!/bin/bash
+
+for num in {1..10}
+do
+    if [ $num -eq 6 ]; then
+        echo "Breaking the loop at number $num"
+        break
+    fi
+    echo "Processing number: $num"
+done
+```
+**Output:**
+```
+Processing number: 1
+Processing number: 2
+Processing number: 3
+Processing number: 4
+Processing number: 5
+Breaking the loop at number 6
+```
+
+---
+
+### 8. **Continue Statement in a Loop**
+```bash
+#!/bin/bash
+
+for num in {1..5}
+do
+    if [ $num -eq 3 ]; then
+        echo "Skipping number $num"
+        continue
+    fi
+    echo "Processing number: $num"
+done
+```
+**Output:**
+```
+Processing number: 1
+Processing number: 2
+Skipping number 3
+Processing number: 4
+Processing number: 5
+```
+> The `continue` statement skips the current iteration and moves to the next one.
+
+---
+
+### 9. **Looping Through Files in a Directory**
+```bash
+#!/bin/bash
+
+for file in /etc/*.conf
+do
+    echo "Configuration file: $file"
+done
+```
+> This script lists all `.conf` files inside the `/etc/` directory.
+
+---
+
+### 10. **Nested Loops**
+```bash
+#!/bin/bash
+
+for i in {1..3}
+do
+    for j in {1..3}
+    do
+        echo "Outer loop: $i, Inner loop: $j"
+    done
+done
+```
+**Output:**
+```
+Outer loop: 1, Inner loop: 1
+Outer loop: 1, Inner loop: 2
+Outer loop: 1, Inner loop: 3
+Outer loop: 2, Inner loop: 1
+Outer loop: 2, Inner loop: 2
+Outer loop: 2, Inner loop: 3
+Outer loop: 3, Inner loop: 1
+Outer loop: 3, Inner loop: 2
+Outer loop: 3, Inner loop: 3
+```
+
+---
+
+Let me know if you need more examples! 😊
