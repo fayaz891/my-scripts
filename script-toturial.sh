@@ -210,14 +210,19 @@ ls /var/www/html/
 
 echo "Welcome $USER on $HOSTNAME."
 echo "#######################################################"
+# awk is a powerful text processing tool in Unix-like operating systems. awk is a programming language designed specifically for searching and manipulating text based on patterns.
+#awk 'NR == 5 {print $7}' filename.txt    (print line 5, column 7 in filename.txt)
 
 FREERAM=$(free -m | grep Mem | awk '{print $4}')
+FREERAM1=$(free -m | awk 'NR == 3 {print $4}')
+
 LOAD=`uptime | awk '{print $9}'`
 ROOTFREE=$(df -h | grep '/dev/sda1' | awk '{print $4}')
 
 
 echo "#######################################################"
 echo "Available free RAM is $FREERAM MB"
+echo "Available free RAM is $FREERAM1 swap"
 echo "#######################################################"
 echo "Current Load Average $LOAD"
 echo "#######################################################"
