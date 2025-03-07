@@ -230,6 +230,39 @@ wget $1 > /dev/null
 unzip $2.zip > /dev/null
 ```
 ---
+In Linux, when you execute a command, it returns an **exit status code**. You can check the exit status of the last executed command using `$?`.  
+
+### Example:
+
+#### ✅ **Successful Command**
+```bash
+$ echo "fayaz"
+fayaz
+
+$ echo $?
+0
+```
+- `echo "fayaz"` runs successfully.
+- `$?` returns `0`, indicating success.
+
+#### ❌ **Failed Command**
+```bash
+$ ecoh "fayaz"
+bash: ecoh: command not found
+
+$ echo $?
+127
+```
+- `ecoh "fayaz"` is an incorrect command (typo in `echo`).
+- `$?` returns `127` (or another non-zero value), indicating failure.
+
+### **Exit Status Code Meaning:**
+- `0` → Success ✅
+- `1-255` → Failure/Error ❌  
+  - `127` → Command not found  
+  - `1` → General error  
+  - `2` → Incorrect usage  
+
 
 ## **6. System Monitoring**
 ```bash
@@ -255,6 +288,7 @@ echo "Current Load Average $LOAD"
 echo "#######################################################"
 echo "Free ROOT partiotion size is $ROOTFREE"
 ```
+
 ---
 
 ## **7. User Input Script**
