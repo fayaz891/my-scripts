@@ -221,7 +221,7 @@ ls /var/www/html/
 ```
 
 ```
-./script.sh URL="https://www.tooplate.com/zip-templates/2098_health.zip" ART_NAME="2098_health"
+./script.sh https://www.tooplate.com/zip-templates/2098_health.zip 2098_health
 
 ./script.sh 1stArg 2ndArg
 
