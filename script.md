@@ -493,7 +493,129 @@ else
 fi
 ```
 ---
+---
+Sure! Here's a **Bash script** that explains and demonstrates various operators and conditions in Bash scripting:  
 
+```bash
+#!/bin/bash
+
+echo "### Bash Operators and Conditions ###"
+
+# 1. Check if a file exists (-f)
+file="example.txt"
+if [ -f "$file" ]; then
+    echo "$file exists."
+else
+    echo "$file does not exist."
+fi
+
+# 2. Check if a directory exists (-d)
+dir="testdir"
+if [ -d "$dir" ]; then
+    echo "$dir exists."
+else
+    echo "$dir does not exist."
+fi
+
+# 3. Check if a file is readable (-r)
+if [ -r "$file" ]; then
+    echo "$file is readable."
+else
+    echo "$file is not readable."
+fi
+
+# 4. Check if a file is writable (-w)
+if [ -w "$file" ]; then
+    echo "$file is writable."
+else
+    echo "$file is not writable."
+fi
+
+# 5. Check if a file is executable (-x)
+if [ -x "$file" ]; then
+    echo "$file is executable."
+else
+    echo "$file is not executable."
+fi
+
+# 6. Check if a variable is not empty (-n)
+var1="Hello"
+if [ -n "$var1" ]; then
+    echo "var1 is not empty."
+else
+    echo "var1 is empty."
+fi
+
+# 7. Check if a variable is empty (-z)
+var2=""
+if [ -z "$var2" ]; then
+    echo "var2 is empty."
+else
+    echo "var2 is not empty."
+fi
+
+# 8. Integer comparison (greater than -gt, less than -lt, equal -eq, not equal !=)
+num1=10
+num2=20
+
+if [ $num1 -gt $num2 ]; then
+    echo "$num1 is greater than $num2."
+elif [ $num1 -lt $num2 ]; then
+    echo "$num1 is less than $num2."
+else
+    echo "$num1 is equal to $num2."
+fi
+
+# 9. Negation using ! (Not operator)
+if [ ! -f "nonexistent.txt" ]; then
+    echo "nonexistent.txt does not exist."
+fi
+
+# 10. Combining conditions with && (AND) and || (OR)
+if [ -f "$file" ] && [ -w "$file" ]; then
+    echo "$file exists and is writable."
+fi
+
+if [ -d "$dir" ] || [ -f "$file" ]; then
+    echo "Either $dir exists, or $file exists."
+fi
+```
+
+---
+
+### **Explanation of Operators in the Script**
+| Operator | Description |
+|----------|-------------|
+| `-f` | Checks if a file exists |
+| `-d` | Checks if a directory exists |
+| `-r` | Checks if a file is readable |
+| `-w` | Checks if a file is writable |
+| `-x` | Checks if a file is executable |
+| `-n` | Checks if a string is **not empty** |
+| `-z` | Checks if a string is **empty** |
+| `-gt` | Greater than (for numbers) |
+| `-lt` | Less than (for numbers) |
+| `-eq` | Equal to (for numbers) |
+| `!=` | Not equal (for numbers) |
+| `!` | Logical NOT (negates a condition) |
+| `&&` | Logical AND (both conditions must be true) |
+| `||` | Logical OR (at least one condition must be true) |
+
+---
+
+### **How to Run the Script**
+1. Save this script as `bash_conditions.sh`
+2. Give it execute permission:
+   ```bash
+   chmod +x bash_conditions.sh
+   ```
+3. Run the script:
+   ```bash
+   ./bash_conditions.sh
+   ```
+
+This will demonstrate all the conditions in action! 🚀 Let me know if you need any modifications. 😊
+---
 ## **10. Check & Start HTTPD Service**
 ```bash
 #!/bin/bash
