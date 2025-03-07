@@ -913,5 +913,115 @@ Outer loop: 3, Inner loop: 3
 ```
 
 ---
+---
+---
+To execute remote commands from your **laptop** to a **remote server**, you can use **SSH** (`Secure Shell`). Below are different ways to run commands remotely.
 
-Let me know if you need more examples! 😊
+---
+
+### **1. Execute a Single Command on a Remote Server**
+```bash
+ssh user@remote_host "ls -l /var/www"
+```
+- This lists files in `/var/www` on the **remote server**.
+- Replace `user` with your **remote username**.
+- Replace `remote_host` with the **server IP or domain**.
+
+---
+
+### **2. Run Multiple Commands on the Remote Server**
+```bash
+ssh user@remote_host "cd /var/www && ls -l && pwd"
+```
+- Runs multiple commands in sequence.
+
+Or using a **here document**:
+```bash
+ssh user@remote_host << EOF
+cd /var/www
+ls -l
+whoami
+EOF
+```
+
+---
+
+### **3. Execute a Script on a Remote Server**
+#### **Method 1: Run a Script Without Copying**
+```bash
+ssh user@remote_host 'bash -s' < myscript.sh
+```
+- This runs `myscript.sh` on the remote server **without copying it**.
+
+#### **Method 2: Copy and Then Run**
+```bash
+scp myscript.sh user@remote_host:/home/user/
+ssh user@remote_host "bash /home/user/myscript.sh"
+```
+- This first copies the script to the remote server, then runs it.
+
+---
+
+### **4. Run Commands as Root (sudo)**
+If you need **sudo privileges**, use:
+```bash
+ssh user@remote_host "echo 'your_password' | sudo -S apt update"
+```
+Or if you have **passwordless sudo**, simply run:
+```bash
+ssh user@remote_host "sudo apt update"
+```
+
+---
+
+### **5. Run Remote Command and Store Output on Your Laptop**
+```bash
+result=$(ssh user@remote_host "hostname")
+echo "Remote server name: $result"
+```
+
+---
+
+### **6. Using SSH Key for Passwordless Authentication**
+If you don’t want to enter the password every time:
+1. Generate an SSH key on your laptop:
+   ```bash
+   ssh-keygen -t rsa -b 4096
+   ```
+2. Copy the public key to the remote server:
+   ```bash
+   ssh-copy-id user@remote_host
+   ssh-copy-id user@remote_host1
+   ssh-copy-id user@remote_host3
+   ssh-copy-id user@remote_host4
+   ```
+3. Now, SSH without a password:
+   ```bash
+   ssh user@remote_host
+   ssh user@remote_host1
+   ssh user@remote_host2
+   ssh user@remote_host3
+   ssh user@remote_host4
+   ```
+
+---
+
+### **7. Run Commands on Multiple Remote Servers**
+If you have multiple remote servers, you can execute commands on all of them:
+```bash
+for server in server1.com server2.com server3.com; do
+    ssh user@$server "uptime"
+done
+```
+
+---
+
+### **8. Run a Background Process on a Remote Server**
+```bash
+ssh user@remote_host "nohup ./long_script.sh > output.log 2>&1 &"
+```
+- Runs a **long-running script** in the **background** and **detaches** from SSH.
+
+---
+
+---
