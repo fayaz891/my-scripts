@@ -169,6 +169,8 @@ Second argument: banana
 # Variable Declaration
 PACKAGE="httpd wget unzip"
 SVC="httpd"
+# URL="https://www.tooplate.com/zip-templates/2098_health.zip"
+# ART_NAME="2098_health"
 TEMPDIR="/tmp/webfiles"
 
 # Installing Dependencies
@@ -216,6 +218,16 @@ echo
 # Verify Deployment
 sudo systemctl status $SVC
 ls /var/www/html/
+```
+
+```
+./script.sh URL="https://www.tooplate.com/zip-templates/2098_health.zip" ART_NAME="2098_health"
+
+./script.sh 1stArg 2ndArg
+
+i.e in script $1 $2
+wget $1 > /dev/null
+unzip $2.zip > /dev/null
 ```
 ---
 
