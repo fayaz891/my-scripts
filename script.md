@@ -289,60 +289,13 @@ echo "#######################################################"
 echo "Free ROOT partiotion size is $ROOTFREE"
 ```
 ---
-### **Usage of Double Quotes (`"`) vs. Single Quotes (`'`) in Bash**
 
-In Bash scripting, **double quotes (`"`)** and **single quotes (`'`)** behave differently:
-
-#### **Example 1: Variable Expansion**
-```bash
-#!/bin/bash
-
-VAR="Hello, World!"
-
-echo "Double Quotes: $VAR"  # ✅ Expands $VAR
-echo 'Single Quotes: $VAR'  # ❌ Prints $VAR as is (no expansion)
-```
-**Output:**
-```
-Double Quotes: Hello, World!
-Single Quotes: $VAR
-```
-
-#### **Example 2: Command Substitution**
-```bash
-#!/bin/bash
-
-echo "Today is $(date)"   # ✅ Works inside double quotes
-echo 'Today is $(date)'   # ❌ Prints $(date) as text
-```
-**Output:**
-```
-Today is Thu Mar 6 12:00:00 UTC 2025
-Today is $(date)
-```
-
-#### **Example 3: Escape Sequences**
-```bash
-echo "Line1\nLine2"   # ✅ Prints with newline
-echo 'Line1\nLine2'   # ❌ Prints \n as text
-```
-**Output:**
-```
-Line1
-Line2
-Line1\nLine2
-```
 
 ---
 
 ### **Usage of Double Quotes (`"`) vs. Single Quotes (`'`) in Bash**
 
 In Bash scripting, **double quotes (`"`)** and **single quotes (`'`)** behave differently:
-
-| Quote Type  | Behavior |
-|-------------|----------|
-| **Double Quotes (`"`)** | Allow variable expansion (`$VAR`), command substitution (`$(command)`), and escape sequences (`\n`, `\t`). |
-| **Single Quotes (`'`)** | Treat everything literally. No variable expansion, no command substitution, and no escape sequences. |
 
 #### **Example 1: Variable Expansion**
 ```bash
@@ -406,7 +359,89 @@ UPTIME_INFO=$(uptime)
 echo "Current Date: $CURRENT_DATE"
 echo "System Uptime: $UPTIME_INFO"
 ```
+---
+### **Usage of `export` in Bash**
+The `export` command in Bash is used to make a variable available to child processes (subshells). Without `export`, a variable is only accessible within the current shell session.
 
+#### **Example 1: Without `export` (Variable Not Available in Subshell)**
+```bash
+VAR="Hello"
+bash  # Open a new subshell
+echo $VAR  # ❌ Will not print anything because VAR is not exported
+```
+
+#### **Example 2: With `export` (Variable Available in Subshell)**
+```bash
+export VAR="Hello"
+bash  # Open a new subshell
+echo $VAR  # ✅ Will print "Hello" because VAR is exported
+```
+
+---
+
+### **How to Make Variables Permanent in Bash**
+By default, variables are lost when you close the terminal. To make them **permanent**, you need to store them in a configuration file that loads when a new session starts.
+
+#### **Method 1: Save Variables in `~/.bashrc` (For Interactive Shells)**
+1. Open `~/.bashrc` file:
+   ```bash
+   nano ~/.bashrc
+   ```
+2. Add your variables at the end of the file:
+   ```bash
+   export MY_VAR="This is a permanent variable"
+   ```
+3. Save and exit (Press `CTRL+X`, then `Y`, then `ENTER`).
+4. Apply changes immediately (or restart terminal):
+   ```bash
+   source ~/.bashrc
+   ```
+5. Now, `MY_VAR` is available in every new session:
+   ```bash
+   echo $MY_VAR
+   ```
+
+---
+
+#### **Method 2: Save Variables in `~/.profile` (For Login Shells)**
+If `~/.bashrc` doesn't work (e.g., for SSH sessions), use `~/.profile`:
+1. Open `~/.profile`:
+   ```bash
+   nano ~/.profile
+   ```
+2. Add your variable:
+   ```bash
+   export MY_VAR="Persistent Value"
+   ```
+3. Save, exit, and reload:
+   ```bash
+   source ~/.profile
+   ```
+
+---
+
+#### **Method 3: Save System-Wide Variables in `/etc/environment`**
+If you want the variable to be **available for all users** on the system:
+1. Edit `/etc/environment` (requires sudo):
+   ```bash
+   sudo nano /etc/environment
+   ```
+2. Add the variable (without `export`):
+   ```bash
+   MY_GLOBAL_VAR="System-wide persistent value"
+   ```
+3. Save, exit, and reboot for changes to take effect.
+
+---
+
+### **Which Method to Use?**
+| Scenario | File to Edit |
+|----------|-------------|
+| For a single user in interactive shells | `~/.bashrc` |
+| For a single user in login shells (like SSH) | `~/.profile` or `~/.bash_profile` |
+| For all users (system-wide) | `/etc/environment` |
+
+Now, even if you close and reopen your terminal, your variables will persist! 🎯 Let me know if you need more details. 🚀
 ---
 
 ## **7. User Input Script**
