@@ -441,7 +441,8 @@ If you want the variable to be **available for all users** on the system:
 | For a single user in login shells (like SSH) | `~/.profile` or `~/.bash_profile` |
 | For all users (system-wide) | `/etc/environment` |
 
-Now, even if you close and reopen your terminal, your variables will persist! 🎯 Let me know if you need more details. 🚀
+---
+---
 ---
 
 ## **7. User Input Script**
@@ -477,7 +478,7 @@ fi
 ```
 ---
 
-## **9. Check Active Network Interfaces**
+## **9. Check Multiple Conditions**
 ```bash
 #!/bin/bash
 
