@@ -288,6 +288,124 @@ echo "Current Load Average $LOAD"
 echo "#######################################################"
 echo "Free ROOT partiotion size is $ROOTFREE"
 ```
+---
+### **Usage of Double Quotes (`"`) vs. Single Quotes (`'`) in Bash**
+
+In Bash scripting, **double quotes (`"`)** and **single quotes (`'`)** behave differently:
+
+#### **Example 1: Variable Expansion**
+```bash
+#!/bin/bash
+
+VAR="Hello, World!"
+
+echo "Double Quotes: $VAR"  # ✅ Expands $VAR
+echo 'Single Quotes: $VAR'  # ❌ Prints $VAR as is (no expansion)
+```
+**Output:**
+```
+Double Quotes: Hello, World!
+Single Quotes: $VAR
+```
+
+#### **Example 2: Command Substitution**
+```bash
+#!/bin/bash
+
+echo "Today is $(date)"   # ✅ Works inside double quotes
+echo 'Today is $(date)'   # ❌ Prints $(date) as text
+```
+**Output:**
+```
+Today is Thu Mar 6 12:00:00 UTC 2025
+Today is $(date)
+```
+
+#### **Example 3: Escape Sequences**
+```bash
+echo "Line1\nLine2"   # ✅ Prints with newline
+echo 'Line1\nLine2'   # ❌ Prints \n as text
+```
+**Output:**
+```
+Line1
+Line2
+Line1\nLine2
+```
+
+---
+
+### **Usage of Double Quotes (`"`) vs. Single Quotes (`'`) in Bash**
+
+In Bash scripting, **double quotes (`"`)** and **single quotes (`'`)** behave differently:
+
+| Quote Type  | Behavior |
+|-------------|----------|
+| **Double Quotes (`"`)** | Allow variable expansion (`$VAR`), command substitution (`$(command)`), and escape sequences (`\n`, `\t`). |
+| **Single Quotes (`'`)** | Treat everything literally. No variable expansion, no command substitution, and no escape sequences. |
+
+#### **Example 1: Variable Expansion**
+```bash
+#!/bin/bash
+
+VAR="Hello, World!"
+
+echo "Double Quotes: $VAR"  # ✅ Expands $VAR
+echo 'Single Quotes: $VAR'  # ❌ Prints $VAR as is (no expansion)
+```
+**Output:**
+```
+Double Quotes: Hello, World!
+Single Quotes: $VAR
+```
+
+#### **Example 2: Command Substitution**
+```bash
+#!/bin/bash
+
+echo "Today is $(date)"   # ✅ Works inside double quotes
+echo 'Today is $(date)'   # ❌ Prints $(date) as text
+```
+**Output:**
+```
+Today is Thu Mar 6 12:00:00 UTC 2025
+Today is $(date)
+```
+
+#### **Example 3: Escape Sequences**
+```bash
+echo "Line1\nLine2"   # ✅ Prints with newline
+echo 'Line1\nLine2'   # ❌ Prints \n as text
+```
+**Output:**
+```
+Line1
+Line2
+Line1\nLine2
+```
+
+---
+
+### **Storing System Variable in a Variable**
+You can store system environment variables or command outputs in a variable.
+
+#### **Example 1: Store System Variable**
+```bash
+USERNAME=$USER
+HOSTNAME=$HOSTNAME
+
+echo "User: $USERNAME"
+echo "Host: $HOSTNAME"
+```
+
+#### **Example 2: Store Command Output**
+```bash
+CURRENT_DATE=$(date)
+UPTIME_INFO=$(uptime)
+
+echo "Current Date: $CURRENT_DATE"
+echo "System Uptime: $UPTIME_INFO"
+```
 
 ---
 
